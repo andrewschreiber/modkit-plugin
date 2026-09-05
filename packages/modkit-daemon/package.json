@@ -1,0 +1,44 @@
+{
+  "name": "@modkit/daemon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The modkit daemon: generates, validates, builds and signs patches for the modkit Obsidian plugin.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "modkit-daemon": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "npm run build && node --watch dist/index.js",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modkit/types": "^0.1.0",
+    "acorn": "^8.15.0",
+    "acorn-walk": "^8.3.5",
+    "esbuild": "^0.28.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "license": "UNLICENSED"
+}

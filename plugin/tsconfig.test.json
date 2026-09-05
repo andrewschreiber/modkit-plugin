@@ -1,0 +1,28 @@
+{
+  // Typechecks `test/plugin-api.ts` — the single entry every plugin test imports — which
+  // `tsconfig.json` deliberately does not cover (its `include` is `src`, because the shipped
+  // declarations must not be contaminated by test code).
+  //
+  // It needs its own project because esbuild will NOT catch drift here. Measured 2026-08-31:
+  // appending `export { thisExportDoesNotExist } from "../src/host/host"` to plugin-api.ts and
+  // running `test/build-tests.mjs` exited **0** and wrote the bundle — esbuild strips types
+  // without resolving them, so a renamed or removed export in `src/` reaches the tests as
+  // `undefined` at call time rather than as a build failure. That is precisely the cross-agent
+  // signature drift this file exists to make loud.
+  //
+  // `references` rather than re-including `src`: the referenced project's `.d.ts` output is what
+  // resolves `../src/...`, so src is compiled once and this project only checks the re-exports.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "test",
+    "outDir": ".tsbuild/test",
+    "tsBuildInfoFile": ".tsbuild/test/.tsbuildinfo",
+
+    // Test code is allowed to import a symbol it does not itself use — re-exporting is the whole
+    // job of this file — so the two unused-checks that make sense for `src` do not apply here.
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["test/plugin-api.ts"],
+  "references": [{ "path": "./tsconfig.json" }, { "path": "../packages/modkit-types" }]
+}

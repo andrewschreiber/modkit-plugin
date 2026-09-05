@@ -1,0 +1,10 @@
+{
+  "id": "modkit-mod-example",
+  "name": "Mod: Example — describe the change in a few words",
+  "version": "0.1.0",
+  "minAppVersion": "1.7.2",
+  "description": "A modkit mod. Patches Example Plugin through Obsidian's public API; never modifies that plugin's own files. Disable it here to remove it.",
+  "author": "modkit (generated)",
+  "authorUrl": "https://github.com/andrewschreiber/modkit-plugin",
+  "isDesktopOnly": false
+}

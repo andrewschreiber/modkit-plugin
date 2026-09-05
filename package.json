@@ -1,0 +1,32 @@
+{
+  "name": "modkit",
+  "version": "0.2.0",
+  "private": true,
+  "description": "An agent that writes and edits software at runtime. Rung 1: an Obsidian plugin that mods Obsidian plugins.",
+  "type": "module",
+  "workspaces": [
+    "plugin",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "npm run build --workspace=@modkit/types && npm run build --workspace=modkit-plugin && npm run build --workspace=@modkit/daemon",
+    "build:plugin": "npm run build --workspace=modkit-plugin",
+    "dev:plugin": "npm run dev --workspace=modkit-plugin",
+    "daemon": "npm run start --workspace=@modkit/daemon",
+    "setup": "node scripts/setup.mjs",
+    "setup:status": "node scripts/setup.mjs --status",
+    "reset": "node scripts/setup.mjs --reset",
+    "agent": "node scripts/launchagent.mjs",
+    "install:vault": "node scripts/install-to-vault.mjs",
+    "release": "node scripts/release.mjs",
+    "typecheck": "tsc -b --pretty",
+    "test:scripts": "node --test scripts/*.test.mjs",
+    "test": "npm run build --workspace=@modkit/types && npm run test --workspaces --if-present && npm run test:scripts"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

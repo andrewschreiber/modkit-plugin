@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+
+    // NodeNext so the daemon can import the built .js directly as ESM. No DOM lib and no
+    // "obsidian" types on purpose: a contract both sides import must not drag either side's
+    // environment into the other's.
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // composite so a root `tsc -b` can reference this project and rebuild it in order.
+    "composite": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+
+    // esbuild bundles this file into the plugin, so it must be legal under single-file transpilation.
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}

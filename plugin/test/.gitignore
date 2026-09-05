@@ -1,0 +1,2 @@
+# esbuild output for the tests, rebuilt by `npm test` (test/build-tests.mjs). Never edited by hand.
+build/

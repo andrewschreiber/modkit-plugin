@@ -1,0 +1,17 @@
+{
+  "// what this is": "Copy to modkit.config.json and edit. Every key is optional. See AGENTS.md.",
+  "// precedence": "A MODKIT_* environment variable always beats the value here.",
+
+  "// backend": "claude | codex. codex additionally needs codexAcknowledgeSandbox — read AGENTS.md first.",
+  "backend": "claude",
+  "// model": "opus | sonnet | haiku, or a full id. Empty string means let the CLI choose.",
+  "model": "sonnet",
+
+  "// claudeBin": "Set this when modkit cannot find your CLI — check /v1/model-check for where it looked.",
+  "claudeBin": "/Users/someone/.local/bin/claude",
+
+  "host": "127.0.0.1",
+  "port": 8501,
+  "concurrency": 1,
+  "logLevel": "info"
+}

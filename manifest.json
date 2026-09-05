@@ -1,0 +1,10 @@
+{
+	"id": "modkit",
+	"name": "modkit",
+	"version": "0.2.0",
+	"minAppVersion": "1.7.2",
+	"description": "Point at something, describe the change in a sentence, and modkit writes a patch that changes it live. Never rewrites anyone else's main.js.",
+	"author": "Andrew Schreiber",
+	"authorUrl": "https://github.com/andrewschreiber",
+	"isDesktopOnly": false
+}

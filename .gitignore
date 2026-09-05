@@ -1,0 +1,21 @@
+node_modules/
+dist/
+# tsc's declaration-only output for plugin/ — esbuild emits the shipped JS, so this is scratch
+# that exists purely so `tsc -b` at the root has something to build the project reference from.
+.tsbuild/
+.DS_Store
+*.log
+.state/
+
+# Daemon secrets — the Ed25519 signing key never leaves the box it was minted on.
+*.key
+keys/
+.env
+.env.*
+
+# Build scratch for generated patch-plugins
+tmp/
+.modkit-build/
+
+# A user's own daemon settings. The example is tracked; the real one is theirs.
+modkit.config.json

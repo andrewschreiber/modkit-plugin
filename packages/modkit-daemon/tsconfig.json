@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    // Node 22.12 is the floor and the target runtime; ES2023 is comfortably inside it and
+    // keeps the emitted code readable, which matters for a process people will read stack
+    // traces from.
+    "target": "ES2023",
+    "lib": ["ES2023"],
+
+    // NodeNext, and no DOM lib: this package is a server. If something here needs `document`,
+    // it is in the wrong package.
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "composite": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    // Resolve the sibling contract by its built declarations, so `tsc -p` works before anyone has
+    // run `npm install` and created the workspace symlink. At *runtime* the symlink is required —
+    // see the README.
+    "baseUrl": ".",
+    "paths": {
+      "@modkit/types": ["../modkit-types/dist/index.d.ts"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "../modkit-types" }]
+}

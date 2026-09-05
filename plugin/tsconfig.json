@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    // es2021 matches the esbuild target below; the two drifting apart is how a plugin ships
+    // syntax the target Electron/WebView cannot parse.
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
+    // Bundler resolution because esbuild — not Node — resolves these imports. It reads the
+    // "exports" map in @modkit/types, which "node" (classic) resolution would not.
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "rootDir": "src",
+
+    // Declarations only: esbuild produces the JavaScript. tsc exists here to typecheck and to
+    // give `tsc -b` at the root something to build. The .d.ts output is scratch, not shipped.
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": ".tsbuild",
+    "tsBuildInfoFile": ".tsbuild/.tsbuildinfo",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "../packages/modkit-types" }]
+}

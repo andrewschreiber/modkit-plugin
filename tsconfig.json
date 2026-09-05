@@ -1,0 +1,13 @@
+{
+  // Solution-style root: no files of its own, only references. `tsc -b` walks these in dependency
+  // order, so `npm run typecheck` at the root builds @modkit/types first and then the two consumers.
+  "files": [],
+  "references": [
+    { "path": "./packages/modkit-types" },
+    { "path": "./packages/modkit-daemon" },
+    { "path": "./plugin" },
+    // The plugin's test entry. Separate project, because `plugin/tsconfig.json` includes only
+    // `src` — and because esbuild does not resolve re-exports, so nothing else checks it.
+    { "path": "./plugin/tsconfig.test.json" }
+  ]
+}
